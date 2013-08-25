@@ -6,8 +6,12 @@
  * @author Aleksander 'A.L.E.C' Machniak <machniak@kolabsys.com>
  * @licence GNU AGPL
  *
- * Configuration (see config.inc.php.dist)
+ * Configuration (see config.inc.php)
  * 
+ * Modified OwnCloud Plugin
+ *
+ * For description visit:
+ * http://blog.sleeplessbeastie.eu/2013/06/24/kolab-how-to-integrate-piwik/
  */
 
 class ifrapp extends rcube_plugin
