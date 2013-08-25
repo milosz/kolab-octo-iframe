@@ -1,7 +1,7 @@
 <?php
 
 /**
- * OwnCloud Plugin
+ * Kolab IFRAME Plugin
  *
  * @author Aleksander 'A.L.E.C' Machniak <machniak@kolabsys.com>
  * @licence GNU AGPL
@@ -10,7 +10,7 @@
  * 
  */
 
-class owncloud extends rcube_plugin
+class ifrapp extends rcube_plugin
 {
     // all task excluding 'login' and 'logout'
     public $task = '?(?!login|logout).*';
@@ -31,7 +31,7 @@ class owncloud extends rcube_plugin
         $this->add_texts('localization/', false);
 
         // register task
-        $this->register_task('owncloud');
+        $this->register_task('ifrapp');
 
         // register actions
         $this->register_action('index', array($this, 'action'));
@@ -39,24 +39,24 @@ class owncloud extends rcube_plugin
 
         // add taskbar button
         $this->add_button(array(
-            'command'    => 'owncloud',
-            'class'      => 'button-owncloud',
-            'classsel'   => 'button-owncloud button-selected',
+            'command'    => 'ifrapp',
+            'class'      => 'button-ifrapp',
+            'classsel'   => 'button-ifrapp button-selected',
             'innerclass' => 'button-inner',
-            'label'      => 'owncloud.owncloud',
+            'label'      => 'ifrapp.ifrapp',
             ), 'taskbar');
 
         // add style for taskbar button (must be here) and Help UI
-        $this->include_stylesheet($this->local_skin_path()."/owncloud.css");
+        $this->include_stylesheet($this->local_skin_path()."/ifrapp.css");
     }
 
     function action()
     {
         $rcmail = rcube::get_instance();
 
-        $rcmail->output->add_handlers(array('owncloudframe' => array($this, 'frame')));
-        $rcmail->output->set_pagetitle($this->gettext('owncloud'));
-        $rcmail->output->send('owncloud.owncloud');
+        $rcmail->output->add_handlers(array('ifrappframe' => array($this, 'frame')));
+        $rcmail->output->set_pagetitle($this->gettext('ifrapp'));
+        $rcmail->output->send('ifrapp.ifrapp');
     }
 
     function frame()
@@ -65,14 +65,9 @@ class owncloud extends rcube_plugin
 
         $this->load_config();
 
-        $src  = $rcmail->config->get('owncloud_url');
-        $user = $_SESSION['kolab_uid']; // requires kolab_auth plugin
-        $pass = $rcmail->decrypt($_SESSION['password']);
+        $src  = $rcmail->config->get('ifrapp_url');
 
-        $src = preg_replace('/^(https?:\/\/)/',
-            '\\1' . urlencode($user) . ':' . urlencode($pass) . '@', $src);
-
-        return '<iframe id="owncloudframe" width="100%" height="100%" frameborder="0"'
+        return '<iframe id="ifrappframe" width="100%" height="100%" frameborder="0"'
             .' src="' . $src. '"></iframe>';
     }
 

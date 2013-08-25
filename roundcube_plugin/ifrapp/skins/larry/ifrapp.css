@@ -1,0 +1,12 @@
+#taskbar a.button-ifrapp span.button-inner
+{
+  background: url(ifrapp.png) 5px 5px no-repeat;
+  height: 14px;
+}
+
+#taskbar a.button-ifrapp:hover span.button-inner,                                                                                                                      
+#taskbar a.button-ifrapp.button-selected span.button-inner
+{
+  background: url(ifrapp.png) 5px -16px no-repeat;
+  height: 14px;
+}
